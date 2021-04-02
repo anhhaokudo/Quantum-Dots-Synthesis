@@ -96,48 +96,48 @@ if current_doi != DEFAULT_DOI:
 st.write(doi_lists)
 if current_doi in doi_lists and current_doi != DEFAULT_DOI:
     st.write(f'The paper with this DOI "{current_doi}" has already been submitted.')
-elif current_doi != DEFAULT_DOI:
-    with open(DOI_FILE_NAME, 'a') as f:
-        f.write(current_doi)
-        f.close()
-    # List of answers for multiple choice questions
-    for i in range(len(RADIO_QUESTIONS_LIST)):
-        radio_answers.append(get_radio_input(
-            RADIO_QUESTIONS_LIST[i], RADIO_SELECTIONS[i]))
+# elif current_doi != DEFAULT_DOI:
+with open(DOI_FILE_NAME, 'a') as f:
+    f.write(current_doi)
+    f.close()
+# List of answers for multiple choice questions
+for i in range(len(RADIO_QUESTIONS_LIST)):
+    radio_answers.append(get_radio_input(
+        RADIO_QUESTIONS_LIST[i], RADIO_SELECTIONS[i]))
 
-    # List of answers for slider questions
-    for i in range(len(SLIDER_QUESTIONS_LIST)):
-        slider_answers.append(get_slider_input(
-            SLIDER_QUESTIONS_LIST[i], SLIDER_SELECTIONS[i][0],
-            SLIDER_SELECTIONS[i][1], SLIDER_SELECTIONS[i][2],
-            SLIDER_SELECTIONS[i][3]))
+# List of answers for slider questions
+for i in range(len(SLIDER_QUESTIONS_LIST)):
+    slider_answers.append(get_slider_input(
+        SLIDER_QUESTIONS_LIST[i], SLIDER_SELECTIONS[i][0],
+        SLIDER_SELECTIONS[i][1], SLIDER_SELECTIONS[i][2],
+        SLIDER_SELECTIONS[i][3]))
 
-    # Rearange users' choice into a list to input to the ML model
-    user_input = [slider_answers[7], radio_answers[0], slider_answers[0], slider_answers[1],
-                  radio_answers[1], slider_answers[2], radio_answers[2], slider_answers[3],
-                  radio_answers[3], slider_answers[4], radio_answers[4], slider_answers[5],
-                  radio_answers[5], slider_answers[6], slider_answers[8]
-                  ]
+# Rearange users' choice into a list to input to the ML model
+user_input = [slider_answers[7], radio_answers[0], slider_answers[0], slider_answers[1],
+              radio_answers[1], slider_answers[2], radio_answers[2], slider_answers[3],
+              radio_answers[3], slider_answers[4], radio_answers[4], slider_answers[5],
+              radio_answers[5], slider_answers[6], slider_answers[8]
+              ]
 
-    # Naming each choice in the user input
-    user_df = pd.DataFrame(np.array(user_input).reshape(1, -1), columns=['Growth Temp (Celsius)',
-                                                                         'Metal_source', 'Metal_mmol (mmol)',
-                                                                         'Chalcogen_mmol (mmol)', 'Carboxylic_Acid',
-                                                                         'CA_mmol (mmol)', 'Amines', 'Amines_mmol (mmol)',
-                                                                         'Phosphines', 'Phosphines_mmol (mmol)',
-                                                                         'Solvent I', 'S_I_amount (g)',
-                                                                         'Solvent II', 'S_II_amount (g)', 'Time_min (min)'
-                                                                         ])
+# Naming each choice in the user input
+user_df = pd.DataFrame(np.array(user_input).reshape(1, -1), columns=['Growth Temp (Celsius)',
+                                                                     'Metal_source', 'Metal_mmol (mmol)',
+                                                                     'Chalcogen_mmol (mmol)', 'Carboxylic_Acid',
+                                                                     'CA_mmol (mmol)', 'Amines', 'Amines_mmol (mmol)',
+                                                                     'Phosphines', 'Phosphines_mmol (mmol)',
+                                                                     'Solvent I', 'S_I_amount (g)',
+                                                                     'Solvent II', 'S_II_amount (g)', 'Time_min (min)'
+                                                                     ])
 
-    # Print user inputs
-    st.write(user_df)
+# Print user inputs
+st.write(user_df)
 
-    # Scaling and encoding user input using the raw dataset
-    FILE_NAME = 'InP_data.csv'
-    st.write('Click submit when you\'re done')
-    if st.button('Submit Data'):
-        if pathlib.Path(FILE_NAME).exists():
-            user_df.to_csv(FILE_NAME, mode='a', header=False)
-        else:
-            user_df.to_csv(FILE_NAME, mode='a', header=True)
-        st.write('Data submitted!')
+# Scaling and encoding user input using the raw dataset
+FILE_NAME = 'InP_data.csv'
+st.write('Click submit when you\'re done')
+if st.button('Submit Data'):
+    if pathlib.Path(FILE_NAME).exists():
+        user_df.to_csv(FILE_NAME, mode='a', header=False)
+    else:
+        user_df.to_csv(FILE_NAME, mode='a', header=True)
+    st.write('Data submitted!')
