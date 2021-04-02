@@ -1,0 +1,3 @@
+,Growth Temp (Celsius),Metal_source,Metal_mmol (mmol),Chalcogen_mmol (mmol),Carboxylic_Acid,CA_mmol (mmol),Amines,Amines_mmol (mmol),Phosphines,Phosphines_mmol (mmol),Solvent I,S_I_amount (g),Solvent II,S_II_amount (g),Time_min (min)
+0,200.0,cadmium oxide,0.15,0.01,lauric acid,10.0,dodecylamine,1.0,triphenylphosphine,1.0,octadecene,10.0,phosphinic acid,10.0,50.0
+0,200.0,cadmium oxide,0.15,0.01,lauric acid,10.0,dodecylamine,1.0,triphenylphosphine,1.0,octadecene,10.0,phosphinic acid,10.0,209.0
