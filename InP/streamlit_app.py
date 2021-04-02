@@ -142,4 +142,4 @@ if st.button('Submit Data'):
         user_df.to_csv(FILE_NAME, mode='a', header=True)
     st.write('Data submitted!')
 
-st.write(FILE_NAME)
+st.write(pd.read_csv(FILE_NAME))
